@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+
+        <form action="" method="POST" class="form" id="form-1">
+          <h3 class="heading">Register Form</h3>
+          <p class="desc">Let's study programming! ❤️</p>
+      
+          <div class="spacer"></div>
+      
+          <div class="form-group">
+            <label for="fullname" class="form-label">Fullname</label>
+            <input id="fullname" name="fullname" type="text" placeholder="VD: Le Minh Tuong" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter your password" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password_confirmation" class="form-label">Repeat Password</label>
+            <input id="password_confirmation" name="password_confirmation" placeholder="Repeat your password" type="password" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="province" class="form-label">Province</label>
+            <select id="province" name="province"class="form-control">
+                <option value="">-- Choose province --</option>
+                <option value="ha noi">Ha Noi</option>
+                <option value="tphcm">Ho Chi Minh City</option>
+                <option value="can tho">Can Tho</option>
+                <option value="other">Other</option>
+            </select>
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <div class="horizontal">
+              <label for="" class="form-label">Sex</label>
+              <div>
+                  <input name="gender" type="radio" value="male">
+                  <span class="form-control-span">Male</span>
+              </div>
+              <div>
+                  <input name="gender" type="radio" value="female">
+                  <span class="form-control-span">Female</span>
+              </div>
+              <div>
+                  <input name="gender" type="radio" value="other">
+                  <span class="form-control-span">Other</span>
+              </div>
+            </div>
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <div class="horizontal">
+              <label for="" class="form-label">Sport</label>
+              <div>
+                  <input name="sport" type="checkbox" value="football">
+                  <span class="form-control-span">Football</span>
+              </div>
+              <div>
+                  <input name="sport" type="checkbox" value="badminton">
+                  <span class="form-control-span">Badminton</span>
+              </div>
+              <div>
+                  <input name="sport" type="checkbox" value="other">
+                  <span class="form-control-span">Other</span>
+              </div>
+            </div>
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="avatar" class="form-label">Avatar</label>
+            <input id="avatar" name="avatar" type="file" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <button class="form-submit">Register</button>
+        </form>
+      
+      </div>
+      <script src="./main.js"></script>
+      <script>
+        Validator({
+            form: '#form-1',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#fullname', 'Please input your fullname!'),
+                Validator.isRequired('#email', 'Please input your email!'),
+                Validator.isEmail('#email', 'Wrong format email!'),
+                Validator.minLength('#password', 6),
+                Validator.isConfirmed('#password_confirmation', function() {
+                    return document.querySelector('#form-1 #password').value;
+                }, 'Password doesn\'t match!'),
+                Validator.isRequired('input[name="gender"]', 'Please input your sex'),
+                Validator.isRequired('#province', 'Please choose your province'),
+                Validator.isRequired('#avatar', 'Please choose your avatar')
+            ],
+            onSubmit: function(data) {
+                console.log(data)
+            }
+        });
+
+      </script>
+</body>
+</html>
